@@ -1,4 +1,6 @@
-   function generateCaptcha() {
+var reurl = window.location.hash;
+reurl = reurl.replace("#", "");
+function generateCaptcha() {
       var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
          'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
          'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -22,6 +24,7 @@
          document.getElementById('success').innerHTML = "Captcha is validated Successfully";
          //alert("Form is validated Successfully");
          return true;
+         window.open(reurl,"_self")
       }
       else {
          document.getElementById('error').innerHTML = "Please enter a valid captcha.";
