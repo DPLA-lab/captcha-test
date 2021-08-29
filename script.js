@@ -23,8 +23,8 @@ function generateCaptcha() {
       if (string1 == string2) {
          document.getElementById('success').innerHTML = "Captcha is validated Successfully";
          //alert("Form is validated Successfully");
-         return true;
          window.open(reurl,"_self")
+         return true;
       }
       else {
          document.getElementById('error').innerHTML = "Please enter a valid captcha.";
