@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>How to create custom Captcha using javascript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+  </head>
+<body onload="generateCaptcha();">
+   <div class="full-row">
+      <div class="heading"><h1>How to create custom Captcha using javascript</h1></div>
+      <div class="captcha_outer flex-row">
+         <div class="captcha_output">
+            <input type="text" id="Captcha" readonly>
+         </div>
+         <div class="captcha_gen">
+            <button id="refresh" onclick="generateCaptcha();">Refresh</button>
+         </div>
+      </div>
+      <div class="captcha_valid flex-row">
+         <div class="fillcaptcha"><input type="text" id="txtInput" /></div>
+         <div class="valid_captcha">
+            <button id="CheckCaptcha" onclick="CheckValidCaptcha();">Check</button>
+         </div>
+      </div>
+      <div class="valid-msg-error">
+         <span id="error" style="color:red"></span>
+         <span id="success" style="color:green"></span>
+      </div>
+   </div>
+</body>
+
+<script type="text/javascript">
+   function generateCaptcha() {
+      var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+      var i;
+      for (i = 0; i < 5; i++) {
+         var a = alpha[Math.floor(Math.random() * alpha.length)];
+         var b = alpha[Math.floor(Math.random() * alpha.length)];
+         var c = alpha[Math.floor(Math.random() * alpha.length)];
+         var d = alpha[Math.floor(Math.random() * alpha.length)];
+         var e = alpha[Math.floor(Math.random() * alpha.length)];
+      }
+      var code = a + '' + b + '' + '' + c + '' + d + '' + e;
+      document.getElementById("Captcha").value = code;
+
+   }
+   function CheckValidCaptcha() {
+      var string1 = removeSpaces(document.getElementById('Captcha').value);
+      var string2 = removeSpaces(document.getElementById('txtInput').value);
+      if (string1 == string2) {
+         document.getElementById('success').innerHTML = "Captcha is validated Successfully";
+         //alert("Form is validated Successfully");
+         return true;
+      }
+      else {
+         document.getElementById('error').innerHTML = "Please enter a valid captcha.";
+         //alert("Please enter a valid captcha.");
+         return false;
+      }
+   }
+   function removeSpaces(string) {
+      return string.split(' ').join('');
+   }
+
+</script>
+
+</html>
